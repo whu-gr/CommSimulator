@@ -1,0 +1,19 @@
+<launch>
+<!-- Robot list -->
+  	<include file="$(find rss_map_processor)/launch/robot.launch">
+    	<arg name="robot_id" value="wheeled0"/>
+  	</include>
+
+	<include file="$(find rss_map_processor)/launch/robot.launch">
+    	<arg name="robot_id" value="wheeled1"/>
+  	</include>
+
+	<include file="$(find rss_map_processor)/launch/robot.launch">
+    	<arg name="robot_id" value="wheeled2"/>
+  	</include>
+
+	<include file="$(find rss_map_processor)/launch/robot.launch">
+    	<arg name="robot_id" value="wheeled3"/>
+  	</include>
+
+</launch>

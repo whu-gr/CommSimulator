@@ -1,0 +1,10 @@
+<launch>
+    <arg name="robot_id" default="wheeled0"/>
+    <node pkg="rss_map_processor" type="ros-wrapper.py" name="rss_map_processor_$(arg robot_id)" output="screen" clear_params="true">
+        <param name="robot_id" value="$(arg robot_id)"/>
+    </node>
+
+    <node pkg="rss_map_processor" type="image_buffer.py" name="image_buffer_$(arg robot_id)" output="screen" clear_params="true">
+        <param name="robot_id" value="$(arg robot_id)"/>
+    </node>
+</launch>
