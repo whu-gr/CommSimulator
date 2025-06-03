@@ -30,8 +30,8 @@ source ~/mitsuba3/build/setpath.sh --extend
 cd ~/CommSimulator/
 source devel/setup.bash --extend
 
-roslaunch rss_map_processor robot.launch robot_id:=wheeled0
+roslaunch rss_map_processor robot.launch robot_id:=robot0
 ```
 
-Then, the package will subscribe to rostopic `/wheeled0/position` and publish the predicted RSS map at rostopic `/wheeled0/rss_map_with_position_repub` with 10Hz.
+Then, the package will subscribe to rostopic `/robot0/position` and publish the predicted RSS map at rostopic `/robot0/rss_map_with_position_repub` with 10Hz. You can launch multiple packages by changing the `robot_id`, enabling RSS prediction for multiple TXs.
 
