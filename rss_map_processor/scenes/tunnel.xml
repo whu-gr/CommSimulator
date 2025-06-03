@@ -1,0 +1,40 @@
+<scene version="2.1.0">
+
+<!-- Materials -->
+
+    <bsdf type="smooth" id="concrete">
+        <float name="eta_r" value="5.24"/>
+        <float name="eta_i" value="0.63214296"/>
+    </bsdf>
+    <bsdf type="smooth" id="wood">
+        <float name="eta_r" value="1.99"/>
+        <float name="eta_i" value="0.09243433"/>
+    </bsdf>
+    <!-- <bsdf type="smooth" id="mat-itu_marble">
+        <float name="eta_r" value="7.074"/>
+        <float name="eta_i" value="0.090132594"/>
+    </bsdf> -->
+    <bsdf type="smooth" id="metal">
+        <float name="eta_r" value="1.0"/>
+        <float name="eta_i" value="51357436.0"/>
+    </bsdf>
+
+<!-- Shapes -->
+	<shape type="merge">
+		<shape type="ply" id="building">
+			<string name="filename" value="tunnel.ply"/>
+			<boolean name="face_normals" value="true"/>
+			<ref id="concrete" name="bsdf"/>
+		</shape>
+		<!-- <shape type="ply" id="vegetation">
+			<string name="filename" value="meshes/mesh1.ply"/>
+			<boolean name="face_normals" value="true"/>
+			<ref id="wood" name="bsdf"/>
+		</shape> -->
+		<!-- <shape type="ply" id="vehicles">
+			<string name="filename" value="meshes/mesh2.ply"/>
+			<boolean name="face_normals" value="true"/>
+			<ref id="metal" name="bsdf"/>
+		</shape> -->
+	</shape>
+</scene>

@@ -11,12 +11,12 @@ import time
 args = sys.argv[1:] # ignore the first arg as it is the .py file
 robot_id = args[0]
 rospy.init_node('map_node_' + robot_id)
-rss_map_with_position_pub = rospy.Publisher("/sensor_coverage_planner/" + robot_id + "/rss_map_with_position", Image, queue_size=2)
+rss_map_with_position_pub = rospy.Publisher(robot_id + "/rss_map_with_position", Image, queue_size=2)
 args = sys.argv[2:]
 args = tuple(map(float, args))
 bridge = CvBridge()
 
-scene = mi.load_file("/home/docker-user/scenes/tunnel.xml")
+scene = mi.load_file("../scenes/tunnel.xml")
 
 # Initialize the MapTracer
 tracer = MapTracer(scene,
