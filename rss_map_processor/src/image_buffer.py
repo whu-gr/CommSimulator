@@ -7,8 +7,8 @@ class RssMapRepublisher:
         rospy.init_node('rss_map_republisher')
         robot_id = rospy.get_param('~robot_id', 'wheeled0')
 
-        sub_topic = "/sensor_coverage_planner/" + str(robot_id) + "/rss_map_with_position"
-        pub_topic = "/sensor_coverage_planner/" + str(robot_id) + "/rss_map_with_position_repub"
+        sub_topic = str(robot_id) + "/rss_map_with_position"
+        pub_topic = "/rss_map_with_position_repub"
 
         self.subscriber = rospy.Subscriber(sub_topic, Image, self.callback)
         self.publisher = rospy.Publisher(pub_topic, Image, queue_size=5)

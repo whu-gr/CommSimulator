@@ -7,8 +7,7 @@ from cv_bridge import CvBridge
 from sensor_msgs.msg import Image
 import time
 
-# robot -> instantRM: x+22;y-93
-args = sys.argv[1:] # ignore the first arg as it is the .py file
+args = sys.argv[1:]
 robot_id = args[0]
 rospy.init_node('map_node_' + robot_id)
 rss_map_with_position_pub = rospy.Publisher(robot_id + "/rss_map_with_position", Image, queue_size=2)
@@ -32,6 +31,7 @@ tracer = MapTracer(scene,
     num_samples = int(1e7),               # Number of rays initially shot from the transmitter
     max_depth = 10)                       # Maximum number of bounces
 
+offset = [22, -93,0]
 tx_position=np.array([args[0], args[1], 0.0]) + offset
 tx_orientation=np.array([np.pi, 0., 0.])
 pm, rdsm, mdam, mddm=tracer(tx_position, tx_orientation)
@@ -44,9 +44,6 @@ cropped_rss_map = pm_db[x_start:x_end, y_start:y_end]
 
 rss_map_with_position = bridge.cv2_to_imgmsg(cropped_rss_map.astype(np.float32), encoding="32FC1")
 rss_map_with_position_pub.publish(rss_map_with_position)
-# print("publish rss map for " + robot_id)
 
 rss_map_with_position_pub.unregister()
 del rss_map_with_position_pub
-
-# rospy.loginfo("RSS map Published")

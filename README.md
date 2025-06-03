@@ -4,11 +4,13 @@ This project repository a real-time simulation communication simulator integrate
 
 ### Installation
 
-Please refer to [instantRM](https://github.com/NVlabs/instant-rm) and [mitsuba3](https://github.com/mitsuba-renderer/mitsuba3) for installation instructions.
+Please refer to [instantRM](https://github.com/NVlabs/instant-rm) and [mitsuba3](https://github.com/mitsuba-renderer/mitsuba3) for installation instructions. We recommend using [Virtualenv](https://virtualenv.pypa.io/en/latest/) to manage Python environments. Suppose the virtual environment for InstantRM is located at `~/venv`, and Mitsuba3 is installed in `~/mitsuba3`.
 
-Install [ROS Noetic](https://www.ros.org/) and use catkin tools to make this repository
+Git clone this repository to folder `~/CommSimulator/src`.
 
-Change the file paths in the code to your actual path, with the current path being `/home/docker-user`.
+Install [ROS Noetic](https://www.ros.org/) and use [catkin tools](https://catkin-tools.readthedocs.io/en/latest/) to build this repository.
+
+Change the file paths in the python code to your actual path, with the current path being `~/`.
 
 ### How to Run
 
@@ -18,7 +20,18 @@ You can configure the antenna pattern in /src/rss_predict_ros.py.
 
 After the configuration, you can run the simulator by
 
-`./home/docker-user/Commsimulator/src/rss_map_processor/launch/run_robotX.sh`
+```bash
+source /opt/ros/noetic/setup.bash
 
-Then, the package will subscribe to rostopic `/robot_id/position` and publish the predicted RSS map at rostopic `/robot_id/rss_map_with_position`
+source ~/venv/bin/activate --extend
+
+source ~/mitsuba3/build/setpath.sh --extend
+
+cd ~/CommSimulator/
+source devel/setup.bash --extend
+
+roslaunch rss_map_processor robot.launch robot_id:=wheeled0
+```
+
+Then, the package will subscribe to rostopic `/wheeled0/position` and publish the predicted RSS map at rostopic `/wheeled0/rss_map_with_position_repub` with 10Hz.
 
