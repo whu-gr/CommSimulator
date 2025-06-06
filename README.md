@@ -23,15 +23,15 @@ After the configuration, you can run the simulator by
 ```bash
 source /opt/ros/noetic/setup.bash
 
-source ~/venv/bin/activate --extend
+source ~/venv/bin/activate --extend  # InstantRM installation path
 
-source ~/mitsuba3/build/setpath.sh --extend
+source ~/mitsuba3/build/setpath.sh --extend  # mitsuba3 installation path
 
 cd ~/CommSimulator/
 source devel/setup.bash --extend
 
-roslaunch rss_map_processor robot.launch robot_id:=robot0
+roslaunch rss_map_processor robot.launch robot_id:=robot0  # change robot_id to your robot_id
 ```
 
-Then, the package will subscribe to rostopic `/robot0/position` and publish the predicted RSS map at rostopic `/robot0/rss_map_with_position_repub` with 10Hz. You can launch multiple packages by changing the `robot_id`, enabling RSS prediction for multiple TXs.
+Then, the package will subscribe to rostopic `/robot0/position` (which is `geometry_msgs/pointstamped` format) and publish the predicted RSS map at rostopic `/robot0/rss_map_with_position_repub` (which is `sensor_msgs/Image` format) with 10Hz. You can launch multiple packages by changing the `robot_id`, enabling RSS prediction for multiple TXs and visualize the results via the RVIZ tool integrated in ROS.
 
